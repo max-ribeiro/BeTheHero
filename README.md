@@ -25,4 +25,50 @@ routes.get('/profile',ProfileController.index);//Busca causas da ONG logada
 
 ```
 As rotas serão manipuladas através do controlador apropriado.
-
+### File Tree
+Be The Hero
+ ┣ backend
+ ┃ ┣ node_modules
+ ┃ ┃ ┃ ┣ modules...
+ ┃ ┣ src
+ ┃ ┃ ┣ controllers
+ ┃ ┃ ┃ ┣ IncidentsController.js
+ ┃ ┃ ┃ ┣ OngController.js
+ ┃ ┃ ┃ ┣ ProfileController.js
+ ┃ ┃ ┃ ┗ SessionController.js
+ ┃ ┃ ┣ database
+ ┃ ┃ ┃ ┣ migrations
+ ┃ ┃ ┃ ┃ ┣ 20200324114329_create_ong.js
+ ┃ ┃ ┃ ┃ ┗ 20200324115328_incidents.js
+ ┃ ┃ ┃ ┣ connection.js
+ ┃ ┃ ┃ ┗ db.sqlite
+ ┃ ┃ ┣ index.js
+ ┃ ┃ ┗ routes.js
+ ┃ ┣ .gitignore
+ ┃ ┣ knexfile.js
+ ┃ ┣ package-lock.json
+ ┃ ┗ package.json
+ ┣ frontend
+ ┃ ┣ node_modules
+ ┃ ┃ ┣ modules...
+ ┃ ┣ public
+ ┃ ┃ ┣ favicon.ico
+ ┃ ┃ ┣ index.html
+ ┃ ┃ ┣ logo192.png
+ ┃ ┃ ┣ logo512.png
+ ┃ ┃ ┣ manifest.json
+ ┃ ┃ ┗ robots.txt
+ ┃ ┣ src
+ ┃ ┃ ┣ App.css
+ ┃ ┃ ┣ App.js
+ ┃ ┃ ┣ App.test.js
+ ┃ ┃ ┣ index.css
+ ┃ ┃ ┣ index.js
+ ┃ ┃ ┣ logo.svg
+ ┃ ┃ ┣ serviceWorker.js
+ ┃ ┃ ┗ setupTests.js
+ ┃ ┣ .gitignore
+ ┃ ┣ package.json
+ ┃ ┣ README.md
+ ┃ ┗ yarn.lock
+ ┗ README.md
