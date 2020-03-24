@@ -1,19 +1,33 @@
 const express = require('express');
+const crypto = require('crypto');
+const connection = require('./database/connection');
 
 const routes = express.Router();
 
-routes.post('/users',(request,response)=>{
-    console.log(request.body)
-    return response.json({
-        message:"Post Users"
-    });
+routes.get('/ongs',async(request,response)=>{
+    const ongs = await connection('ongs').select('*');
+    
+    return response.json(ongs);
 });
 
-routes.get('/users',(request,response)=>{
-    const params = request.query;
-    console.log(params);
-    return response.json({
-        message:"Get Users"
-    });
+routes.post('/ongs',async (request,response)=>{
+    const {name,email,whatsapp,city,uf} = request.body;
+    const id = crypto.randomBytes(4).toString('HEX');
+   try{
+        await connection('ongs').insert({
+            id,
+            name,
+            email,
+            whatsapp,
+            city,
+            uf
+        });
+    }catch(error){
+        console.log(error);
+    }
+    
+    return response.json({id});
 });
+
+
 module.exports = routes;
