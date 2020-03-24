@@ -1,4 +1,4 @@
 # Be the hero
 ## Resumo
 Projeto da semana omnistack 11 da Rocketseat. 
-API Rest criada através de Node.JS, front-end e mobile desenvolvido em React.
+Be The Hero visa ser uma plataforma onde ONGs poderão se cadastrar e registrar suas campanhas e voluntarios interessados em ajudar nestas causas terão acesso a diversas campanhas as quais ele poderá contribuir. 
