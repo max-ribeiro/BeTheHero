@@ -14,6 +14,10 @@ Neste caso contamos com as seguintes rotas para requisições:
 routes.get('/ongs/',OngController.index);//Lista todas as ongs cadastradas
 routes.post('/ongs/',OngController.create);//Cadastra uma nova ong
 routes.delete('/ongs/',OngController.delete);//Deleta a ong cadastrada pelo usuario
+
+routes.get('/incidents',IncidentController.index);//Lista todas as causas cadastradas
+routes.post('/incidents',IncidentController.create);//Cadastra uma nova causa
+routes.delete('/incidents/:id',IncidentController.delete);//Deleta uma causa existente
 ```
-As rotas serão manipuladas através de seu controlador.
+As rotas serão manipuladas através do controlador apropriado.
 
