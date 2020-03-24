@@ -11,8 +11,9 @@ Neste caso contamos com as seguintes rotas para requisições:
 
 #### Ongs
 ``` Javascript
-routes.get('/ongs/',index);//Lista todas as ongs cadastradas
-routes.post('/ongs/',create);//Lista todas as ongs cadastradas
-routes.delete('/ongs/',delete);//Lista todas as ongs cadastradas
-
+routes.get('/ongs/',OngController.index);//Lista todas as ongs cadastradas
+routes.post('/ongs/',OngController.create);//Cadastra uma nova ong
+routes.delete('/ongs/',OngController.delete);//Deleta a ong cadastrada pelo usuario
+```
+As rotas serão manipuladas através de seu controlador.
 
