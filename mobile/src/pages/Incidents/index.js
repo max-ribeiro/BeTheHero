@@ -10,15 +10,16 @@ import logoImg from '../../assets/logo.png';
 
 export default function Incidents() {
     const [incidents,setIncidents] = useState([]);
-
+    const [totalIncidents,setTotalIncidents] = useState(0);
     
-    function navigateToDetail(){
-        navigation.navigate('Detail');
+    function navigateToDetail(incident){
+        navigation.navigate('Detail',{incident});
     }
 
     async function loadIncidents(){
         const response = await api.get('incidents');
         setIncidents(response.data);
+        setTotalIncidents(response.headers['x-total-count']);
     }
     useEffect(()=>{
         loadIncidents();
@@ -32,7 +33,7 @@ export default function Incidents() {
             <View style={styles.header}>
                 <Image source={logoImg} />
                 <Text style={styles.headerText}>
-                    Total de <Text style={styles.headerTextBold}>0 casos</Text>
+                    Total de <Text style={styles.headerTextBold}>{totalIncidents} casos</Text>
                 </Text>
             </View>
 
@@ -56,11 +57,18 @@ export default function Incidents() {
                         <Text style={styles.incidentValue}>{item.title}</Text>
 
                         <Text style={styles.incidentProperty}>VALOR:</Text>
-                        <Text style={styles.incidentValue}>{item.value}</Text>
+                        <Text style={styles.incidentValue}>{
+                            Intl.NumberFormat(
+                                'pt-BR',{
+                                style:'currency',
+                                currency:'BRL'
+                                }).format(item.value)
+                            }
+                        </Text>
 
                         <TouchableOpacity
                             style={styles.detailsButton}
-                            onPress={navigateToDetail}
+                            onPress={()=>navigateToDetail(item)}
                         >
                             <Text style={styles.detailsButtonText}>
                                 Ver mais detalhes
