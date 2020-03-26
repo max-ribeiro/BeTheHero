@@ -15,10 +15,10 @@ module.exports = {
                 city,
                 uf
             });
+            return response.json({id});
         }catch(error){
             console.log(error);
         }
-        return response.json({id});
     },
     async index(request,response){
         const ongs = await connection('ongs').select('*');
