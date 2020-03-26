@@ -1,18 +1,31 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native';
 
+import api from '../../services/api';
 import styles from './styles';
 
 import logoImg from '../../assets/logo.png';
 
 export default function Incidents() {
-    const navigation = useNavigation();
+    const [incidents,setIncidents] = useState([]);
 
+    
     function navigateToDetail(){
         navigation.navigate('Detail');
     }
+
+    async function loadIncidents(){
+        const response = await api.get('incidents');
+        setIncidents(response.data);
+    }
+    useEffect(()=>{
+        loadIncidents();
+    },[]);
+
+    const navigation = useNavigation();
+
 
     return (
         <View style={styles.container}>
@@ -29,41 +42,21 @@ export default function Incidents() {
             <Text style={styles.description}>
                 Escolha um dos casos abaixo e salve o dia.
             </Text>
-
             <FlatList
+                data={incidents}
                 style={styles.incidentsList}
-                data={[1,2]}
+                keyExtractor={incident=>String(incident.id)}
                 showsVerticalScrollIndicator={false}
-                keyExtractor={incident=>String(incident)}
-                renderItem={() => (
+                renderItem={({item}) => (
                     <View style={styles.incident}>
-                        <Text style={styles.incidentProperty}>
-                            ONG:
-                        </Text>
-                        <Text style={styles.incidentValue}>
-                            Value:
-                        </Text>
+                        <Text style={styles.incidentProperty}>ONG:</Text>
+                        <Text style={styles.incidentValue}>{item.name}</Text>
 
-                        <Text style={styles.incidentProperty}>
-                            ONG:
-                        </Text>
-                        <Text style={styles.incidentValue}>
-                            Value:
-                        </Text>
+                        <Text style={styles.incidentProperty}>CASO:</Text>
+                        <Text style={styles.incidentValue}>{item.title}</Text>
 
-                        <Text style={styles.incidentProperty}>
-                            ONG:
-                        </Text>
-                        <Text style={styles.incidentValue}>
-                            Value:
-                        </Text>
-
-                        <Text style={styles.incidentProperty}>
-                            ONG:
-                        </Text>
-                        <Text style={styles.incidentValue}>
-                            Value:
-                        </Text>
+                        <Text style={styles.incidentProperty}>VALOR:</Text>
+                        <Text style={styles.incidentValue}>{item.value}</Text>
 
                         <TouchableOpacity
                             style={styles.detailsButton}
